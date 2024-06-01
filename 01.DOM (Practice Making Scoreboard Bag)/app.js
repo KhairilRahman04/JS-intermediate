@@ -3,7 +3,7 @@ const p2Button = document.querySelector('#p2-button');
 const p1Display = document.querySelector('#p1-display');
 const p2Display = document.querySelector('#p2-display');
 const resetButton = document.querySelector('#reset')
-const winPointOption = document.querySelector('#winpoint');
+const winPointOption = document.querySelector('#winPoint');
 
 
 let p1Score = 0;
