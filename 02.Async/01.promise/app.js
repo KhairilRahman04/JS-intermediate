@@ -1,4 +1,5 @@
 //latihan request pakai callback function
+//promise
 
 // callback version
 const requestCallback = (url, success, failure) => {
