@@ -1,5 +1,5 @@
 //latihan request pakai callback function
-//promise
+//promisee
 
 // callback version
 const requestCallback = (url, success, failure) => {
@@ -36,23 +36,23 @@ async function requestHandler() {
 	}
 }
 
-// requestPromise('movie.com')
-// 	.then((result) => {
-// 		console.log('page 1');
-// 		console.log(result);
-// 		return requestPromise('movie.com');
-// 	})
-// 	.then(() => {
-// 		console.log('page 2');
-// 		return requestPromise('movie.com');
-// 	})
-// 	.then(() => {
-// 		console.log('page 3');
-// 		return requestPromise('movie.com');
-// 	})
-// 	.catch((err) => {
-// 		console.log(err);
-// 	});
+requestPromise('movie.com')
+	.then((result) => {
+		console.log('page 1');
+		console.log(result);
+		return requestPromise('movie.com');
+	})
+	.then(() => {
+		console.log('page 2');
+		return requestPromise('movie.com');
+	})
+	.then(() => {
+		console.log('page 3');
+		return requestPromise('movie.com');
+	})
+	.catch((err) => {
+		console.log(err);
+	});
 
 // requestPromise('movie.com')
 // 	.then((response) => {
