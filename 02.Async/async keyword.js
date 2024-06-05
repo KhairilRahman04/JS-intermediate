@@ -9,6 +9,5 @@ hello()
     console.log('respone:',res)
 })
 
-// .catch(()=>{
-    //catch jika gagal
-// })
+
+
