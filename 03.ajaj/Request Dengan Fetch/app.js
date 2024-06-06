@@ -1,4 +1,4 @@
-//membuat request menggunakan fetch
+//membuat request menggunakan fetch dengan sangat mudah
 
 const req = async () => {
     try{
