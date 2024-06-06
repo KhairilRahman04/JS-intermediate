@@ -10,15 +10,20 @@ const addJoke = async () => {
 }
 
 const getJoke = async () => {
+    try {
+        const config = {
+            headers : {
+                Accept:'application/json',
+            },
+        };
+     
+            const res = await axios.get('https://icanhazdadjoke.com/', config);
+            return res.data.joke;
+            
+    } catch (error) {
+        return 'jokes not available'
+    }
 
-    const config = {
-        headers : {
-            Accept:'application/json',
-        },
-    };
- 
-        const res = await axios.get('https://icanhazdadjoke.com/', config);
-        return res.data.joke;
 }
 
 button.addEventListener('click',addJoke);
