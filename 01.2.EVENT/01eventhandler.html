@@ -1,0 +1,82 @@
+<!-- Menambahkan Event Handler - Menyiapkan -->
+<!-- Cukup banyak event yang bisa kita gunakan untuk menambah aspek interaktif dalam halaman web.
+     Walau sangat banyak, kita hanya akan mempraktikkan 2 event saja,
+      yakni event onclick dan onload. -->
+
+
+          <!-- Menambahkan Event Handler - Membuat event handler onload -->
+      <!-- 1.tugas pertama kita adalah memunculkan semua konten HTML setelah semua baris
+       pada berkas HTML diproses oleh browser di mana event onload akan terjadi. Pada bagian tag <script>,
+        kita akan menulis kode perintah, yang mana akan dijalankan ketika event onload terjadi pada elemen body.
+         Kode perintah tersebut disebut sebagai event handler dari event onload. -->
+      
+            <!-- Menambahkan Event Handler - Membuat event handler onclick -->
+         <!-- 2.kita akan mengubah angka dalam teks untuk menampilkan berapa kali user menekan tombol. 
+          Caranya adalah memberikan event listener kepada button. Selain itu, kita juga akan memberikan
+           kejutan lucu ketika user sudah menekan tombol hingga 7 kali. Penasaran? Mari kita langsung ngoding! -->
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <title>Event World</title>
+        
+        <style>
+          .contents {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 2px solid black;
+            padding: 15px;
+          }
+          
+          #generateButton {
+            margin-top: 5px;
+            margin-bottom: 15px;;
+          }
+        </style>
+      </head>
+      <body>
+      <div class="contents" align="center" hidden>
+        <button id="incrementButton">Tekan Aku :)</button>
+        <h3>Kamu sudah menekan tombol di atas sebanyak <span id="count">0</span></h3>
+      </div>
+       
+      <script>
+        
+        //2.
+        // Pada kode di bawah, kita memerintahkan agar teks melakukan proses increment (++) 
+        // pada elemen yang memiliki atribut id dengan value count.
+        function increment (){
+          document.getElementById('count').innerText++;
+          
+          //membuat ketika innerText == 7 maka akan menjalankan beberapa kode...
+          if (document.getElementById('count').innerText == 7){
+            //membuat element h4 dan isi
+            const hiddenMassege = document.createElement('h4');
+            hiddenMassege.innerText = 'Selamat! Anda menemukan hadiah tersembunyi...';
+            //membuat element img untuk gambar
+            const image = document.createElement('img');
+            image.setAttribute('src','https://i.ibb.co/0V49VRZ/catto.jpg')
+            //menambahkan di atribut content, yg mana kita menambahkan hiddenmassege pada child image (bagian akhir image)
+            const contents = document.querySelector('.contents');
+            contents.appendChild(hiddenMassege).appendChild(image)
+          } 
+        }
+
+        //1.
+        // function menampilkan popup alert dan menghapus atribut hidden pada class contents
+        function welcome (){
+          alert('Sim salabim muncullah elemen-elemen HTML!');
+          const contents = document.querySelector('.contents');
+          contents.removeAttribute('hidden')
+        }
+        //ketika atribut incrementbutton("tekan aku") di klik
+        //  maka akan menjalankan function increment
+        document.getElementById('incrementButton').onclick = increment;
+
+        //element body akan ditampilkan setelah kita klik pop up, karena pada kode dibawah tadat diartikan 
+        //"element body akan di load(dijalankan) sesudah function welcome yg dibuat"
+        document.body.onload = welcome;
+        </script>
+      </body>
+      </html>
