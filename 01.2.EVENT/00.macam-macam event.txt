@@ -1,0 +1,28 @@
+Macam-macam Event:
+-Window Event
+-Form Event
+-Keyboard Event
+-Clipboard Event
+-Mouse Event
+
+Menambahkan Event Handler pada HTML Element:
+Menggunakan method element.addEventListerner
+
+Custom Event:
+Merupakan Event yang nama dan cara membangkitkannya ditentukan oleh kita sendiri.
+
+Konsep Event Bubbling dan Event Capturing:
+Event Bubbling: Event yang terjadi dari element dalam ke element luar.
+
+Event Capturing: Event yang terjadi dari element luar ke element dalam.
+
+Event pada elemen <form>:
+onSubmit: Event yang dibangkitkan ketika tombol submit pada form ditekan.
+
+Event pada elemen <input>:
+onInput:  Event yang dibangkitkan setiap kali menulis atau menghapus nilai pada elemen input.
+onFocus: Event yang dibangkitkan ketika elemen input dalam keadaan fokus.
+onBlur: Event yang dibangkitkan ketika elemen input dalam keadaan fokus berubah menjadi tidak fokus.
+onChange: Event yang dibangkitkan ketika nilai elemen input berubah.
+onCopy: Event yang dibangkitkan ketika pengguna men-copy nilai dari input.
+onPaste: Event yang dibangkitkan ketika pengguna men-paste nilai pada input.
