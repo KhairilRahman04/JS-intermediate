@@ -1,0 +1,67 @@
+<!-- Menambahkan Event Handler - Menerapkan Event Handler dengan addEventListener().
+Kali ini kita akan mempelajari menerapkan event handler menggunakan function addEventListener.
+ Pertama, sesuaikan berkas event.html sebelumnya dengan kode sebagai berikut. -->
+
+ <!-- Method addEventListener() menerima beberapa parameter, tetapi yang perlu kita ketahui sementara adalah 
+ parameter pertama dan kedua. Parameter pertama harus diisi dengan tipe event yang digunakan, yang mana akan men-trigger 
+ atau memancing kode JavaScript untuk menjalankan sebuah fungsi khusus. Function khusus diletakkan pada parameter kedua
+yang akan dijalankan ketika tipe event yang didefinisikan terjadi.  -->
+
+<!-- Ada satu aturan yang perlu kita ketahui, yaitu nama event yang kita definisikan tidak seperti sebelumnya 
+menggunakan onload dan onclick (tanpa imbuhan "on"). Namun, kita dapat menuliskannya secara langsung.
+ Sebagai contoh function onload menjadi ‘load’, function onclick menjadi ‘click’. Untuk daftar lengkap 
+ event apa saja yang yang didukung dapat dilihat di sini: https://developer.mozilla.org/en-US/docs/Web/Events. -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Event World</title>
+  <style>
+    .contents {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border: 2px solid black;
+      padding: 15px;
+    }
+    
+    #generateButton {
+      margin-top: 5px;
+      margin-bottom: 15px;;
+    }
+  </style>
+</head>
+<body>
+<div class="contents" align="center" hidden>
+  <button id="incrementButton">Tekan Aku :)</button>
+  <h3>Kamu sudah menekan tombol di atas sebanyak <span id="count">0</span></h3>
+</div>
+ 
+<script>
+  function increment() {
+    document.getElementById('count').innerText++;
+    
+    if (document.getElementById('count').innerText == 7) {
+      const hiddenMessage = document.createElement('h4');
+      hiddenMessage.innerText = 'Selamat! Anda menemukan hadiah tersembunyi...';
+ 
+      const image = document.createElement('img');
+      image.setAttribute('src', 'https://i.ibb.co/0V49VRZ/catto.jpg');
+ 
+      const contents = document.querySelector('.contents');
+      contents.appendChild(hiddenMessage).appendChild(image);
+    }
+  }
+  
+  function welcome() {
+    alert('Sim salabim muncullah elemen-elemen HTML!');
+    const contents = document.querySelector('.contents');
+    contents.removeAttribute('hidden');
+  }
+  
+  // kita akan menulis kode menggunakan addEventListener di sini
+  window.addEventListener('load',welcome)
+  document.getElementById('incrementButton').addEventListener('click',increment)
+</script>
+</body>
+</html>

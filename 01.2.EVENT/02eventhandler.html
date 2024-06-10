@@ -1,0 +1,64 @@
+           <!-- 3. Menambahkan Event Handler - Menerapkan event handler inline -->
+           <!-- Tambahkan event handler pada tag <body> dan <button> sebagai berikut
+             (perhatikan tulisan yang sudah di-bold): -->
+           <!DOCTYPE html>
+           <html>
+           <head>
+             <title>Event World</title>
+             
+             <style>
+               .contents {
+                 position: fixed;
+                 top: 50%;
+                 left: 50%;
+                 transform: translate(-50%, -50%);
+                 border: 2px solid black;
+                 padding: 15px;
+               }
+               #generateButton {
+                 margin-top: 5px;
+                 margin-bottom: 15px;;
+               }
+             </style>
+           </head>
+           <body onload="welcome">
+           <div class="contents" align="center" hidden>
+             <button onclick="increment" id="incrementButton">Tekan Aku :)</button>
+             <h3>Kamu sudah menekan tombol di atas sebanyak <span id="count">0</span></h3>
+           </div>
+            
+           <script>
+             
+             //2.
+             // Pada kode di bawah, kita memerintahkan agar teks melakukan proses increment (++) 
+             // pada elemen yang memiliki atribut id dengan value count.
+             function increment (){
+               document.getElementById('count').innerText++;
+               
+               //membuat ketika innerText == 7 maka akan menjalankan beberapa kode...
+               if (document.getElementById('count').innerText == 7){
+                 //membuat element h4 dan isi
+                 const hiddenMassege = document.createElement('h4');
+                 hiddenMassege.innerText = 'Selamat! Anda menemukan hadiah tersembunyi...';
+                 //membuat element img untuk gambar
+                 const image = document.createElement('img');
+                 image.setAttribute('src','https://i.ibb.co/0V49VRZ/catto.jpg')
+                 //menambahkan di atribut content, yg mana kita menambahkan hiddenmassege pada child image (bagian akhir image)
+                 const contents = document.querySelector('.contents');
+                 contents.appendChild(hiddenMassege).appendChild(image)
+               } 
+             }
+     
+             //1.
+             // function menampilkan popup alert dan menghapus atribut hidden pada class contents
+             function welcome (){
+               alert('Sim salabim muncullah elemen-elemen HTML!');
+               const contents = document.querySelector('.contents');
+               contents.removeAttribute('hidden')
+             }
+            
+            //  document.getElementById('incrementButton').onclick = increment;
+            //  document.body.onload = welcome;
+             </script>
+           </body>
+           </html>
