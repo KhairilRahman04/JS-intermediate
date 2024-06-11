@@ -1,0 +1,50 @@
+<!-- Menambahkan Custom Event -->
+<!-- Apa yang dimaksud dengan Custom Event? Custom Event pada materi ini merujuk kepada penggunaan class Event()
+untuk membuat event dengan nama yang sudah kita tentukan sendiri. Misal, sebelumnya kita telah menggunakan
+nama-nama event yang sudah “dikenal” oleh JavaScript yakni seperti “click” dan “load’. Apakah mungkin jika
+kita membuat event sendiri? Misalnya, event dengan nama "eventBuatanKita"? Jawabannya, sangat mungkin!
+mari kita lihat sintaks berikut. -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Event World</title>
+    <style>
+      .buttons {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: 2px solid black;
+        padding: 15px;
+      }
+      .button {
+        margin: 8px;
+        height: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="buttons" align="center">
+      <h3 id="caption">Silakan tekan salah satu tombol di bawah...</h3>
+      <button class="button" id="tombol">Tombol Custom Event</button>
+    </div>
+    <script>
+      const changeCaption = new Event('changeCaption');//membuat costum event 
+      
+     //membuat agar costum event yg dibuat dapat di jalankan.
+      window.addEventListener('load', function() {//Kode di sini akan dieksekusi saat halaman web selesai dimuat.
+        const tombol = document.getElementById('tombol');
+        tombol.addEventListener('changeCaption', customEventHandler);
+        tombol.addEventListener('click', function() {});
+      });
+      // Fungsi dari customEventHandler memiliki 1 parameter yang bernama “ev”. Apa itu “ev”? Secara otomatis,
+      // parameter “ev” berisi obyek event (“ev” merupakan singkatan dari “event”). Dengan obyek ini, kita dapat memeroleh
+      // banyak informasi mengenai elemen yang terkait. Semua ini akan dilakukan secara otomatis oleh JavaScript.
+      function customEventHandler(ev) {
+        console.log('Event ' + ev.type + ' telah dijalankan');
+        const caption = document.getElementById('caption');
+        caption.innerText = 'Anda telah membangkitkan custom event';
+      }
+    </script>
+  </body>
+</html>
