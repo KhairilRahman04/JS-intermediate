@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Bubbling World</title>
+    
+    <link rel="stylesheet" href="styles.css" >
+  </head>
+  <body>
+    <!-- Event Bubbling -->
+    <!-- Mengapa berperilaku demikian? Perhatikan kembali setiap tag <div> pada berkas HTML di atas. Semua elemen memiliki event handler untuk event onclick. Sesuai dengan penjelasan bubbling, jika kita menekan elemen paling dalam, maka semua event handler akan dijalankan dimulai dari elemen pertama yang di-klik lalu kemudian parent-nya dan seterusnya.
+    Sekarang coba tekan daerah elemen yang terdapat tulisan “TENGAH”, maka event handler yang dijalankan hanyalah milik elemen tersebut serta parent-parentnya dan tidak termasuk child-nya. Alur tersebut sama seperti prinsip gelembung udara udara yang hanya bergerak ke atas dan tidak ke bawah. -->
+    <div onclick="alert('ELEMEN LANGIT')" align="center">
+      LANGIT
+      <div onclick="alert('ELEMEN LUAR')" align="center">
+        LUAR
+        <div onclick="alert('ELEMEN TENGAH')" align="center">
+          TENGAH
+          <div onclick="alert('ELEMEN DALAM')" align="center">DALAM</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
