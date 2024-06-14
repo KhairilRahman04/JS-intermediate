@@ -1,0 +1,36 @@
+<!-- Event Capturing -->
+<!-- kebalikan bubbling -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Capturing World</title>
+    
+    <link rel="stylesheet" href="styles.css" >
+  </head>
+  <body>
+    <div align="center" id="langit">
+      LANGIT
+      <div align="center" id="luar">
+        LUAR
+        <div align="center" id="tengah">
+          TENGAH
+          <div align="center" id="dalam">DALAM</div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+    const divs = document.getElementsByTagName('div');
+    for (let el of divs) {
+        el.addEventListener('click', function () {
+            alert('ELEMEN ' + el.getAttribute('id').toUpperCase());
+        },true);
+    }
+    // Kode di atas akan menambahkan event listener melalui addEventListener terhadap semua elemen div pada berkas HTML. Isi dari event handler adalah nama id elemen tersebut diubah semua ke huruf besar. Fungsionalitas sama persis dengan cara yang kita terapkan pada bubbling.html, hanya saja kita menggunakan method addEventListener ketimbang inline.
+    // Kenapa kita menggunakan addEventListener? Hal ini karena kita bisa memberikan satu parameter khusus bernilai boolean ke parameter ke-3 seperti yang ditunjukkan kode yang dicetak tebal di atas, yaitu true.
+    // Perhatikan ketika kita klik sebuah elemen, maka dialog box alert yang muncul dimulai dari elemen paling luar dan berhenti di elemen yang kita tekan. Persis dengan kebalikan dari bubbling, bukan?
+    </script>
+  </body>
+</html>
