@@ -1,0 +1,72 @@
+<!-- Event onSubmit -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Form World</title>
+    <style>
+.contents {
+  border: 2px solid black;
+  padding: 15px;
+ 
+  position: fixed;
+  top: 50%;
+  left: 50%;
+ 
+ 
+  transform: translate(-50%, -50%);
+}
+ 
+ 
+.form-element {
+  margin: 8px;
+  text-align: left;
+}
+    </style>
+  </head>
+  <body>
+    <div class="contents">
+      <h2 align="center">Isi data diri</h2>
+ 
+      <div class="formContent">
+        <form id="formDataDiri">
+          <div class="form-element">
+            <label for="inputNama">Nama:</label><br />
+            <input type="text" id="inputNama" name="nama" placeholder="Nama Anda" required /><br />
+          </div>
+ 
+          <div class="form-element">
+            <label for="inputDomisili">Domisili:</label><br />
+            <input
+              type="text"
+              id="inputDomisili"
+              name="domisili"
+              placeholder="Domisili Anda"x
+              required
+            /><br />
+          </div>
+ 
+          <div class="form-element">
+            <input type="submit" value="Submit Data" />
+          </div>
+        </form>
+      </div>
+ 
+      <h3 id="messageAfterSubmit"></h3>
+    </div>
+    <script>
+        submitAction = document.getElementById('formDataDiri');
+        submitAction.addEventListener('submit',function(e){
+            inputNama = document.getElementById('inputNama').value;
+            inputDomisili = document.getElementById('inputDomisili').value;
+            hiddenMassage = `Halo ${inputNama} bagaimana cuaca di ${inputDomisili}?`;
+            document.getElementById('messageAfterSubmit').innerText = hiddenMassage;
+            e.preventDefault()
+        })
+
+// Kode di atas akan mengambil nilai yang sudah di-input oleh user. Caranya adalah memanggil properti value dari masing-masing elemen input pada form. Lalu, input akan dimasukkan ke sebuah string dengan sebuah format khusus yang akan ditampilkan ke layar.
+
+// Ada sebuah kode baru yang belum pernah kita bahas yakni event.preventDefault(). Apa fungsi kode tersebut? Ketika kita melakukan proses submit pada form, halaman web akan melakukan proses refresh. Nah, event.preventDefault() akan mencegah proses refresh tersebut.
+    </script>
+  </body>
+</html>
