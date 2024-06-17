@@ -1,0 +1,188 @@
+<!-- Input Event: onInput, onFocus, dan onBlur -->
+<!-- Input Event: onChange, onCopy, dan onPaste -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Form World</title>
+   <style>
+    .contents {
+  padding: 8px;
+  border: 2px solid black;
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+}
+
+.form-element {
+  margin: 8px;
+  text-align: left;
+}
+
+#notifikasiSisaKarakter {
+  visibility: hidden;
+}
+   </style>
+  </head>
+  <body>
+    <div class="contents">
+      <h2 align="center">Input Event Form</h2>
+
+      <div class="formContent">
+        <form id="formDataDiri" autocomplete="off">
+          <div class="form-element" id="fieldName">
+            <label for="inputNama">Nama Panggilan:</label>
+            <br />
+            <input
+              id="inputNama"
+              type="text"
+              name="nama"
+              placeholder="Nama panggilan Anda"
+              maxlength="15"
+            />
+            <br />
+            <label id="notifikasiSisaKarakter">
+              Sisa karakter: <span id="sisaKarakter"></span>
+            </label>
+          </div>
+
+          <div class="form-element" id="fieldCopy">
+            <label for="inputCopy"><i>Copy</i> tulisan ini:</label>
+            <br />
+            <input
+              id="inputCopy"
+              type="text"
+              name="copy"
+              value="Hello World!"
+              readonly
+            />
+            <br />
+          </div>
+
+          <div class="form-element" id="fieldPaste">
+            <label for="inputPaste"><i>Paste</i> tulisan di sini:</label>
+            <br />
+            <input
+              id="inputPaste"
+              type="text"
+              name="paste"
+              placeholder="Paste sesuatu di sini"
+            />
+            <br />
+          </div>
+
+          <div class="form-element" id="fieldCaptcha">
+            <label for="inputCaptcha">Tulis <i>captcha</i> berikut.</label>
+            <br />
+            <img src="https://i.ibb.co/yy59QPB/Captcha.png" alt="Captcha" />
+            <br />
+            <input
+              id="inputCaptcha"
+              type="text"
+              name="captcha"
+              placeholder="Tulis captcha di sini"
+            />
+            <br />
+            <p>
+              Tekan Enter pada keyboard jika sudah selesai menulis
+              <i>captcha</i>
+            </p>
+          </div>
+
+          <div class="form-element" align="center">
+            <input
+              id="submitButton"
+              type="submit"
+              value="Submit Data"
+              disabled
+            />
+          </div>
+        </form>
+      </div>
+    </div>
+    <script>
+  //Event onInput
+// Event onInput akan dijalankan setiap kali kita menulis atau menghapus apa pun pada sebuah field input yang memiliki event listener tersebut. Berkas HTML yang telah ditunjukkan di materi sebelumnya, field untuk mengisi nama panggilan (tag input dengan id inputNama) memiliki batas 15 karakter. Kita ingin membuat sebuah event handler, yang mana ketika menulis nama, akan ditampilkan sisa karakter yang dapat dituliskan oleh user.
+// Kita akan menggunakan event onInput untuk memeriksa setiap kali menulis atau menghapus karakter. Ingat ya, karena nanti kita menggunakan method addEventListener(), maka versi string event onInput untuk dimasukkan ke parameter pertama method tersebut adalah “input”.
+    document.addEventListener('DOMContentLoaded', function () {
+    const inputMaxLengthOnLoad = document.getElementById('inputNama').maxLength;
+    document.getElementById('sisaKarakter').innerText = inputMaxLengthOnLoad;
+    
+    document.getElementById('inputNama').addEventListener('input', function () {
+      const jumlahKarakterDiketik = document.getElementById('inputNama').value.length;
+      const jumlahKarakterMaksimal = document.getElementById('inputNama').maxLength;
+      
+      console.log('jumlahKarakterDiketik: ', jumlahKarakterDiketik);
+      console.log('jumlahKarakterMaksimal: ', jumlahKarakterMaksimal);
+      const sisaKarakterUpdate = jumlahKarakterMaksimal - jumlahKarakterDiketik;
+      document.getElementById('sisaKarakter').innerText = sisaKarakterUpdate.toString();
+      
+      if (sisaKarakterUpdate === 0) {
+        document.getElementById('sisaKarakter').innerText = 'Batas maksimal tercapai!';
+      } else if (sisaKarakterUpdate <= 5) {
+        document.getElementById('notifikasiSisaKarakter').style.color = 'red';
+      } else {
+        document.getElementById('notifikasiSisaKarakter').style.color = 'black';
+      }
+    });
+
+    //onfocus
+    // Event onFocus akan dijalankan ketika melakukan klik di sebuah elemen input. Kita akan mencoba untuk menampilkan tulisan berupa notifikasi jumlah karakter yang masih diperbolehkan. Untuk dapat melakukan hal tersebut, kita harus menambahkan sebuah event handler pada elemen input yang menerima penulisan nama panggilan untuk event onFocus.
+    document.getElementById('inputNama').addEventListener('focus', function () {
+    console.log('inputNama: focus');
+    document.getElementById('notifikasiSisaKarakter').style.visibility = 'visible';
+  });
+  
+  
+  
+  // Event onBlur
+  // Event onBlur akan dijalankan ketika pada kondisi yang terbalik dengan event onFocus, yakni jika kita “pergi” dari elemen yang memiliki event handler untuk event onFocus. Apa maksud dari “pergi”? Maksudnya adalah kita tidak lagi berinteraksi secara langsung dengan elemen tersebut seperti kita telah melakukan klik pada elemen lain.
+  // Dalam berkas index.js, t ambahkan kode (sebuah event listener lagi) yang bercetak tebal berikut untuk menerima input nama panggilan.
+  document.getElementById('inputNama').addEventListener('blur', function () {
+      console.log('inputNama: blur');
+      document.getElementById('notifikasiSisaKarakter').style.visibility = 'hidden';
+    });
+
+    // event onchange
+    // sedangkan event onChange akan terjadi jika elemen input mengalami perubahan nilai dan menjadi blur (user tidak focus pada elemen tersebut). Sederhananya, event onChange seakan-akan merupakan gabungan dari event onInput dan onBlur.
+    // Fitur yang ingin kita tambahkan adalah jika user menulis captcha dengan benar, tombol “Submit Data” aktif. Bagaimana menambahkan event handler onChange pada elemen <input> untuk captcha? Simak uraiannya di bawah ini. 
+    document.getElementById('inputCaptcha').addEventListener('change', function (event) {
+    console.log('inputCaptcha: change');
+    const inputCaptcha = document.getElementById('inputCaptcha').value;
+    const submitButtonStatus = document.getElementById('submitButton');
+    if (inputCaptcha === 'PRNU') {
+      submitButtonStatus.removeAttribute('disabled');
+    } else {
+      submitButtonStatus.setAttribute('disabled', '');
+    }
+    event.preventDefault()
+  });
+  document.getElementById('formDataDiri').addEventListener('submit', function (event) {
+    const inputCaptcha = document.getElementById('inputCaptcha').value;
+    if (inputCaptcha === 'PRNU') {
+      alert('Selamat! Captcha Anda lolos :D');
+    } else {
+      alert('Captcha Anda belum tepat :(');
+      document.getElementById('submitButton').setAttribute('disabled', '');
+    }
+    event.preventDefault();
+  });
+
+  //oncopy
+//Tugas kita kali ini adalah menambahkan event listener untuk event onCopy. Sedangkan fungsi event handler-nya hanyalah memunculkan sebuah dialog box alert yang berisi pesan “Anda telah men-copy sesuatu...”.
+  document.getElementById('inputCopy').addEventListener('copy', function () {
+    alert('Anda telah men-copy sesuatu...');
+  });
+
+//Event onPaste
+// Tugas kali ini mirip dengan apa yang telah kita lakukan pada event onCopy. Kita hanya membuat fungsi event handler untuk memunculkan sebuah dialog box alert yang berisi pesan “Anda telah mem-paste sebuah teks...”.
+document.getElementById('inputPaste').addEventListener('paste',function(){
+    alert('anda sudah melakukan paste ')
+})
+});
+    </script>
+  </body>
+</html>
